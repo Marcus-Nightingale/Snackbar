@@ -1,0 +1,96 @@
+.snackbar-wrapper {
+    min-width: 450px;
+    max-width: calc(80vw);
+    background-color: #323377;
+    color: #fff;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 99999;
+    font-size: 17px;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+}
+.snackbar-wrapper.danger {
+    background-color: #dc3545;
+}
+.snackbar-wrapper.success {
+    background-color: #28a745;
+}
+.snackbar-wrapper.warning {
+    background-color: #ffc107;
+    font-weight: 600;
+}
+.snackbar-wrapper.info {
+    background-color: #17a2b8;
+    color: white;
+}
+.snackbar-wrapper.snack-top-left {
+    left: 20px;
+    top: 20px;
+}
+.snackbar-wrapper.snack-top-right {
+    right: 20px;
+    top: 20px;
+}
+.snackbar-wrapper.snack-bottom-left {
+    left: 20px;
+    bottom: 20px;
+}
+.snackbar-wrapper.snack-bottom-right {
+    right: 20px;
+    bottom: 20px;
+}
+.snackbar-wrapper.snack-top-center {
+    top: 20px;
+    left: 50%;
+    margin-right: -50%;
+    transform: translateX(-50%);
+}
+.snackbar-wrapper.snack-bottom-center {
+    left: 50%;
+    margin-right: -50%;
+    transform: translateX(-50%);
+    bottom: 20px;
+}
+.snack-rounded {
+    border-radius: 8px;
+}
+.sb-1 {
+    min-width: 2%;
+}
+.snack-icon {
+    display: block;
+    border-right: 1px solid rgba(255, 255, 255, 0.5);
+    padding-right: 10px;
+    height: 100%;
+    font-size: calc(3vh);
+}
+.snack-text {
+    margin: 0;
+    font-size: 0.87rem;
+    display: inline;
+    padding-left: 20px;
+    max-width: 86%;
+}
+.snack-progress {
+    width: 0;
+    height: 5px;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+.snack-close {
+    position: absolute;
+    font-size: 1.2rem;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    color: white;
+}
+.snack-close:hover {
+    color: lightgrey;
+}
