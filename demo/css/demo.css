@@ -59,7 +59,7 @@ body {
 }
 
 .text-primary {
-    color: black !important;
+    mix-blend-mode: initial;
 }
 
 .btn-primary {
@@ -93,7 +93,6 @@ body {
 }
 
 .example-snack {
-    min-width: 450px;
     font-size: 17px;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.35);
     overflow: hidden;

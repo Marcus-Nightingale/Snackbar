@@ -13,6 +13,13 @@
     display: flex;
     flex-wrap: wrap;
 }
+
+@media only screen and (max-width: 576px) {
+    .snackbar-wrapper {
+        min-width: 80vw !important;
+    }
+}
+
 .snackbar-wrapper.danger {
     background-color: #dc3545;
 }
