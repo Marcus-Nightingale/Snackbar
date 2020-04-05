@@ -2,8 +2,8 @@
   * Snackbar.js
   *
   * Created by Marcus Nightingale
-  * Date: 01/05/2019
-  * Time: 16:08
+  * Date: 04/05/2020
+  * Time: 12:00
   */
 window.onload = function() {
     if (!window.jQuery) {
