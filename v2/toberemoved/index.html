@@ -1,11 +1,12 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 <body>
-
     <style>
         @media only screen and (max-width: 576px) {
             .snack {
@@ -13,20 +14,42 @@
             }
         }
 
-        .snack {
-            min-width: 250px;
-            max-width: calc(50vw);
-            background-color: #323377;
-            color: #fff;
-            border-radius: 2px;
-            padding: 16px;
-            position: fixed;
+        .snackbar-wrapper {
+            padding: 1.5rem;
             z-index: 100;
-            font-size: 14px;
-            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.35);
-            overflow: hidden;
+            pointer-events: none;
+
             display: flex;
             flex-wrap: wrap;
+            position: fixed;
+
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        :root {
+            --transition-duration: .3s;
+        }
+
+        .snack {
+            background-color: hsla(230, 13%, 9%, 0.98);
+            box-shadow: 0 0.3px 0.4px rgba(0, 0, 0, 0.025),0 0.9px 1.5px rgba(0, 0, 0, 0.05), 0 3.5px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 0.25em;
+            padding: 16px;
+            color: hsl(0, 0%, 100%);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            pointer-events: auto;
+            will-change: transform;
+            transition: opacity var(--transition-duration), visibility 0s, -webkit-transform var(--transition-duration) cubic-bezier(0.215, 0.61, 0.355, 1);
+            transition: opacity var(--transition-duration), visibility 0s, transform var(--transition-duration) cubic-bezier(0.215, 0.61, 0.355, 1);
+            transition: opacity var(--transition-duration), visibility 0s, transform var(--transition-duration) cubic-bezier(0.215, 0.61, 0.355, 1), -webkit-transform var(--transition-duration) cubic-bezier(0.215, 0.61, 0.355, 1);
+            min-width: 250px;
+            max-width: calc(50vw);
+            max-height: 250px;
+            position: absolute;
         }
 
         .snack-inner {
@@ -73,15 +96,20 @@
         }
     </style>
 
-    <button class="trigger-snack">
-        trigger
-    </button>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col p-5">
+                <button class="trigger-snack btn btn-primary">
+                    Trigger Snackbar
+                </button>
+            </div>
+        </div>
+    </div>
 
     <script>
         let Snackbar = (function() {
 
             let defaults = {
-                appendTo: 'body',
                 stack: true,
                 position: 'snack-br',
                 timeout: 4000,
@@ -93,6 +121,9 @@
                 icon: true,
                 rounded: true
             };
+
+            let snackbarWrapper = document.getElementsByClassName('snackbar-wrapper');
+
             /**
              * Create a constructor object
              * @param {string} title
@@ -123,6 +154,12 @@
 
                 Constructor.options = defaults; // TODO :: extend defaults with opts
 
+                if (snackbarWrapper.length === 0) {
+                    let wrapper = document.createElement('div');
+                    wrapper.classList.add('snackbar-wrapper');
+                    document.body.appendChild(wrapper);
+                }
+
                 this.addSnack(title, message);
             }
 
@@ -134,12 +171,7 @@
 
                 snack.innerHTML = `<p class="snack-inner"><b>${title}</b><br/>${message}</p>`;
 
-                if (Constructor.options.appendTo !== 'body') {
-                    // TODO :: Handle request to attach to another element
-                    return;
-                }
-
-                document.body.appendChild(snack);
+                snackbarWrapper[0].appendChild(snack);
             }
 
             return Constructor;
@@ -151,5 +183,6 @@
             new Snackbar('Hello', 'World');
         })
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
 </html>
