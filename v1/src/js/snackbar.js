@@ -143,6 +143,7 @@ window.onload = function() {
 
         return $snack;
     };
+
     $.Snackbar.remove = function ($snack) {
         "use strict";
         if ($snack.fadeOut) {

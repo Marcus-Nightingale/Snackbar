@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <style>
+        @media only screen and (max-width: 576px) {
+            .snack {
+                min-width: 80vw !important;
+            }
+        }
+
+        .snack {
+            min-width: 250px;
+            max-width: calc(50vw);
+            background-color: #323377;
+            color: #fff;
+            border-radius: 2px;
+            padding: 16px;
+            position: fixed;
+            z-index: 100;
+            font-size: 14px;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.35);
+            overflow: hidden;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .snack-inner {
+            padding: 0;
+            margin: 0;
+        }
+
+        .snack-rounded {
+            border-radius: 8px;
+        }
+
+        .snack-tl {
+            left: 20px;
+            top: 20px;
+        }
+
+        .snack-tr {
+            right: 20px;
+            top: 20px;
+        }
+
+        .snack-bl {
+            left: 20px;
+            bottom: 20px;
+        }
+
+        .snack-br {
+            right: 20px;
+            bottom: 20px;
+        }
+
+        .snack-tc {
+            top: 20px;
+            left: 50%;
+            margin-right: -50%;
+            transform: translateX(-50%);
+        }
+
+        .snack-bc {
+            left: 50%;
+            margin-right: -50%;
+            transform: translateX(-50%);
+            bottom: 20px;
+        }
+    </style>
+
+    <button class="trigger-snack">
+        trigger
+    </button>
+
+    <script>
+        let Snackbar = (function() {
+
+            let defaults = {
+                appendTo: 'body',
+                stack: true,
+                position: 'snack-br',
+                timeout: 4000,
+                progress: true,
+                closable: true,
+                minWidth: 250,
+                gutter: 10,
+                sticky: false,
+                icon: true,
+                rounded: true
+            };
+            /**
+             * Create a constructor object
+             * @param {string} title
+             * @param {string} message
+             * @param {object} opts
+             * @constructor
+             */
+            function Constructor(title, message = '', opts = {}) {
+                if (typeof title !== 'string') {
+                    console.error('Snackbar title must be of type string!');
+                    return;
+                }
+
+                if (typeof message !== 'string') {
+                    console.error('Snackbar message must be of type string!');
+                    return;
+                }
+
+                if (!title.length && !message.length) {
+                    console.error('Snackbar title or message must be set and cannot be empty!');
+                    return;
+                }
+
+                if (typeof opts !== 'object') {
+                    console.error('Snackbar opts must be an object if set!');
+                    return;
+                }
+
+                Constructor.options = defaults; // TODO :: extend defaults with opts
+
+                this.addSnack(title, message);
+            }
+
+            Constructor.prototype.addSnack = (title, message) => {
+                let snack = document.createElement('div');
+
+                snack.classList.add('snack');
+                snack.classList.add(Constructor.options.position);
+
+                snack.innerHTML = `<p class="snack-inner"><b>${title}</b><br/>${message}</p>`;
+
+                if (Constructor.options.appendTo !== 'body') {
+                    // TODO :: Handle request to attach to another element
+                    return;
+                }
+
+                document.body.appendChild(snack);
+            }
+
+            return Constructor;
+        })();
+
+        let trigger = document.getElementsByClassName('trigger-snack')[0];
+
+        trigger.addEventListener('click', function() {
+            new Snackbar('Hello', 'World');
+        })
+    </script>
+</body>
+</html>
