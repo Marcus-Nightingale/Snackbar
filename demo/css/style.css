@@ -8,12 +8,12 @@
 
 @font-face {
     font-family: TTNorms;
-    src: url(./TT_Norms_Pro_ExtraBlack.otf);
+    src: url(../fonts/TT_Norms_Pro_ExtraBlack.otf);
 }
 
 @font-face {
     font-family: DarkerGrotesque;
-    src: url(./DarkerGrotesque-Semibold.woff);
+    src: url(../fonts/DarkerGrotesque-Semibold.woff);
 }
 
 * {
