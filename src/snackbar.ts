@@ -1,12 +1,13 @@
 interface SnackbarOptions {
-    message: string;
-    duration?: number;
-    position?: 'top-left' | 'top-center' | 'top-right' | 'center-left' | 'center-right' | 'bottom-left' | 'bottom-center' | 'bottom-right';
-    element?: HTMLElement;
-    customClass?: string;
-    dismissible?: boolean;
-    closeIcon?: string;
-    status?: 'success' | 'error' | 'warning' | 'info'; // New option for status
+    message: string; // The message to display
+    duration?: number; // How long the snackbar should be visible (in milliseconds)
+    position?: 'top-left' | 'top-center' | 'top-right' | 'center-left' | 'center-right' | 'bottom-left' | 'bottom-center' | 'bottom-right'; // Position of the snackbar
+    element?: HTMLElement; // An element to contain the snackbar (optional)
+    customClass?: string; // A custom CSS class for additional styling
+    dismissible?: boolean; // Whether the snackbar should be dismissible with a button
+    closeIcon?: string; // HTML for a custom close button icon
+    status?: 'success' | 'error' | 'warning' | 'info'; // Predefined status styles
+    centerText?: boolean; // Whether the text should be centered
 }
 
 class Snackbar {
@@ -14,7 +15,9 @@ class Snackbar {
     private static snackbarGroups: { [key: string]: Snackbar[] } = {};
 
     constructor(private options: SnackbarOptions) {
-        this.options.duration = this.options.dismissible ? undefined : this.options.duration || 3000;
+        // Set the default duration to 5000ms (5 seconds) if not specified
+        this.options.duration = this.options.dismissible ? undefined : this.options.duration || 5000;
+
         this.container = this.createContainer();
 
         const position = this.options.position || 'bottom-center';
@@ -31,12 +34,15 @@ class Snackbar {
         container.textContent = this.options.message;
         container.classList.add('snackbar');
 
-        if (this.options.status) {
-            container.classList.add(`snackbar-${this.options.status}`);
-        }
+        // Apply the correct class based on the background color each time the snackbar is created
+        this.applyColorScheme(container);
 
         if (this.options.customClass) {
             container.classList.add(this.options.customClass);
+        }
+
+        if (this.options.status) {
+            container.classList.add(`snackbar-${this.options.status}`);
         }
 
         if (this.options.dismissible) {
@@ -45,6 +51,10 @@ class Snackbar {
             closeButton.innerHTML = this.options.closeIcon || '<i class="ph ph-x"></i>';
             closeButton.onclick = () => this.dismiss();
             container.appendChild(closeButton);
+        }
+
+        if (this.options.centerText) {
+            container.classList.add('snackbar-center-text');
         }
 
         if (this.options.element) {
@@ -58,6 +68,19 @@ class Snackbar {
 
         container.style.zIndex = this.getHighestZIndex().toString();
         return container;
+    }
+
+    private applyColorScheme(container: HTMLElement) {
+        const bodyBackgroundColor = window.getComputedStyle(document.body).backgroundColor;
+        const rgb = bodyBackgroundColor.match(/\d+/g)?.map(Number) || [255, 255, 255];
+        const brightness = (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) / 1000;
+        const isDarkBackground = brightness < 128;
+
+        if (isDarkBackground) {
+            container.classList.add('snackbar-light');
+        } else {
+            container.classList.add('snackbar-dark');
+        }
     }
 
     private updatePositions() {

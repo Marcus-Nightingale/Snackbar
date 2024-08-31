@@ -2,7 +2,7 @@
 var Snackbar = (function () {
     function Snackbar(options) {
         this.options = options;
-        this.options.duration = this.options.dismissible ? undefined : this.options.duration || 3000;
+        this.options.duration = this.options.dismissible ? undefined : this.options.duration || 5000;
         this.container = this.createContainer();
         var position = this.options.position || 'bottom-center';
         if (!Snackbar.snackbarGroups[position]) {
@@ -16,11 +16,12 @@ var Snackbar = (function () {
         var container = document.createElement('div');
         container.textContent = this.options.message;
         container.classList.add('snackbar');
-        if (this.options.status) {
-            container.classList.add("snackbar-".concat(this.options.status));
-        }
+        this.applyColorScheme(container);
         if (this.options.customClass) {
             container.classList.add(this.options.customClass);
+        }
+        if (this.options.status) {
+            container.classList.add("snackbar-".concat(this.options.status));
         }
         if (this.options.dismissible) {
             var closeButton = document.createElement('button');
@@ -28,6 +29,9 @@ var Snackbar = (function () {
             closeButton.innerHTML = this.options.closeIcon || '<i class="ph ph-x"></i>';
             closeButton.onclick = function () { return _this.dismiss(); };
             container.appendChild(closeButton);
+        }
+        if (this.options.centerText) {
+            container.classList.add('snackbar-center-text');
         }
         if (this.options.element) {
             this.options.element.style.position = 'relative';
@@ -40,6 +44,19 @@ var Snackbar = (function () {
         }
         container.style.zIndex = this.getHighestZIndex().toString();
         return container;
+    };
+    Snackbar.prototype.applyColorScheme = function (container) {
+        var _a;
+        var bodyBackgroundColor = window.getComputedStyle(document.body).backgroundColor;
+        var rgb = ((_a = bodyBackgroundColor.match(/\d+/g)) === null || _a === void 0 ? void 0 : _a.map(Number)) || [255, 255, 255];
+        var brightness = (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) / 1000;
+        var isDarkBackground = brightness < 128;
+        if (isDarkBackground) {
+            container.classList.add('snackbar-light');
+        }
+        else {
+            container.classList.add('snackbar-dark');
+        }
     };
     Snackbar.prototype.updatePositions = function () {
         var position = this.options.position || 'bottom-center';
