@@ -2,7 +2,7 @@
   "name": "@marcus-nightingale/snackbar.js",
   "version": "1.0.6",
   "description": "Easy & Lightweight Snackbar Notifications",
-  "keywords": ["snakbar", "snackbars", "toast"],
+  "keywords": ["snackbar", "snackbars", "toast"],
   "homepage": "https://marcus-nightingale.github.io/Snackbar/demo/",
   "bugs": {
     "url": "https://github.com/Marcus-Nightingale/Snackbar/issues"
@@ -10,8 +10,5 @@
   "author": {
     "name": "Marcus Nightingale"
   },
-  "repository": "Marcus-Nightingale/Snackbar",
-  "dependencies": {
-    "jquery": "^3.4.1"
-  }
+  "repository": "Marcus-Nightingale/Snackbar"
 }
