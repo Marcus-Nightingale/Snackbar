@@ -1,188 +1,282 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Snackbar.js | Demo</title>
+        <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0iI2ZmZmZmZiIgdmlld0JveD0iMCAwIDI1NiAyNTYiPjxwYXRoIGQ9Ik0yMzYuNDQsNzMuMzQsMjEzLjIxLDU3Ljg2QTYwLDYwLDAsMCwwLDE1NiwxNmgtLjI5QzEyMi43OSwxNi4xNiw5Niw0My40Nyw5Niw3Ni44OVY5Ni42M0wxMS42MywxOTcuODhsLS4xLjEyQTE2LDE2LDAsMCwwLDI0LDIyNGg4OEExMDQuMTEsMTA0LjExLDAsMCwwLDIxNiwxMjBWMTAwLjI4bDIwLjQ0LTEzLjYyYTgsOCwwLDAsMCwwLTEzLjMyWk0xMjYuMTUsMTMzLjEybC02MCw3MmE4LDgsMCwxLDEtMTIuMjktMTAuMjRsNjAtNzJhOCw4LDAsMSwxLDEyLjI5LDEwLjI0Wk0xNjQsODBhMTIsMTIsMCwxLDEsMTItMTJBMTIsMTIsMCwwLDEsMTY0LDgwWiI+PC9wYXRoPjwvc3ZnPg==">
+        <link rel="stylesheet" href="css/snackbar.css">
+        <link rel="stylesheet" href="css/style.css">
+        <style>
+            /* Custom styles for the demo */
+            .demo-section {
+                margin-bottom: 50px;
+            }
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snackbar.js Demo</title>
-    <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0iI2ZmZmZmZiIgdmlld0JveD0iMCAwIDI1NiAyNTYiPjxwYXRoIGQ9Ik0yMzYuNDQsNzMuMzQsMjEzLjIxLDU3Ljg2QTYwLDYwLDAsMCwwLDE1NiwxNmgtLjI5QzEyMi43OSwxNi4xNiw5Niw0My40Nyw5Niw3Ni44OVY5Ni42M0wxMS42MywxOTcuODhsLS4xLjEyQTE2LDE2LDAsMCwwLDI0LDIyNGg4OEExMDQuMTEsMTA0LjExLDAsMCwwLDIxNiwxMjBWMTAwLjI4bDIwLjQ0LTEzLjYyYTgsOCwwLDAsMCwwLTEzLjMyWk0xMjYuMTUsMTMzLjEybC02MCw3MmE4LDgsMCwxLDEtMTIuMjktMTAuMjRsNjAtNzJhOCw4LDAsMSwxLDEyLjI5LDEwLjI0Wk0xNjQsODBhMTIsMTIsMCwxLDEsMTItMTJBMTIsMTIsMCwwLDEsMTY0LDgwWiI+PC9wYXRoPjwvc3ZnPg==">
-    <link rel="stylesheet" href="css/snackbar.css"> <!-- Link to the snackbar styles -->
-    <link rel="stylesheet" href="css/style.css">
-    <style>
-        /* Custom styles for the demo */
-        .demo-section {
-            margin-bottom: 50px;
-        }
+            .demo-section h2 {
+                margin-bottom: 30px;
+            }
 
-        .demo-section h2 {
-            margin-bottom: 30px;
-        }
+            .demo-container {
+                margin-bottom: 40px;
+            }
 
-        .demo-container {
-            margin-bottom: 40px;
-        }
+            .button-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
 
-        .button-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
+            .button-grid button {
+                font-size: 1.2rem;
+                transition: background-color 0.3s;
+                border: 1px solid #333;
+                background: white;
+                color: #333;
+                border-radius: 0;
+                text-align: left;
+                padding: 25px;
+            }
 
-        .button-grid button {
-            padding: 15px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            background-color: #333;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-        }
+            .button-grid button:hover {
+                background-color: #555;
+            }
 
-        .button-grid button:hover {
-            background-color: #555;
-        }
+            /* Dark mode adjustments */
+            body.dark-mode .button-grid button {
+                background-color: #444;
+                color: #ddd;
+            }
 
-        /* Dark mode adjustments */
-        body.dark-mode .button-grid button {
-            background-color: #444;
-            color: #ddd;
-        }
+            body.dark-mode .button-grid button:hover {
+                background-color: #666;
+            }
 
-        body.dark-mode .button-grid button:hover {
-            background-color: #666;
-        }
-    </style>
-</head>
+            .custom-snackbar {
+                background: darkorange;
+            }
 
-<body>
+            .documentation {
+                padding: 30px;
+                border: 2px solid #333;
+                background-color: #fff;
+                color: #333;
+                font-family: 'TTNorms', sans-serif;
+                margin-bottom: 50px;
+                display: grid;
+                grid-template-columns: 1fr 3fr;
+                gap: 30px;
+            }
 
-<div id="meteors-container"></div>
+            .documentation h2 {
+                font-size: 2rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                grid-column: 1 / -1;
+                margin-bottom: 40px;
+                position: relative;
+            }
 
-<div class="grid-container">
-    <div class="grid-line left-solid"></div>
-    <div class="grid-line right-solid"></div>
-    <div class="grid-line dashed-line-1"></div>
-    <div class="grid-line dashed-line-2"></div>
-    <div class="grid-line dashed-line-3"></div>
-    <div class="grid-line dashed-line-4"></div>
-</div>
+            .documentation h2::before {
+                content: "";
+                position: absolute;
+                bottom: -10px;
+                left: 0;
+                width: 50px;
+                height: 4px;
+                background-color: #333;
+            }
 
-<div class="main-content">
-    <div class="sticky invert-background fixed-button">
-        <i class="ph-fill ph-bird"></i>
-    </div>
+            .documentation p {
+                font-size: 1rem;
+                line-height: 1.6;
+                margin-bottom: 20px;
+                grid-column: 2 / -1;
+            }
 
-    <div class="bordered-animation grid-col-full p-50">
-        <span></span><span></span><span></span><span></span>
-        <h1>Snackbar.js</h1>
-        <p>
-            Explore how the Snackbar.js library can be used to display notifications in different positions and with various styles.
-            The demo below showcases different configurations.
-        </p>
-    </div>
+            .documentation ul {
+                list-style: none;
+                padding-left: 0;
+                margin-bottom: 30px;
+                grid-column: 2 / -1;
+            }
 
-    <div class="grid-col-full mb-40">
-        <div class="fixed-button float-end loading-element pointer bordered clearfix" id="toggle-meteors">
-            <i class="ph-fill ph-meteor"></i>
+            .documentation ul li {
+                margin-bottom: 20px;
+                font-size: 1.1rem;
+                position: relative;
+            }
+
+            .documentation ul li:before {
+                content: "0" counter(item) ".";
+                counter-increment: item;
+                position: absolute;
+                left: -35px;
+                font-size: 1.3rem;
+                font-weight: 700;
+                color: #333;
+            }
+
+            .documentation ul ul {
+                margin-top: 10px;
+                padding-left: 20px;
+                margin-bottom: 20px;
+            }
+
+            .documentation ul ul li:before {
+                content: "-";
+                position: absolute;
+                left: -20px;
+                font-weight: bold;
+            }
+
+            .documentation pre {
+                background-color: #f7f7f7;
+                color: #333;
+                padding: 20px;
+                font-size: 1rem;
+                border: 2px solid #333;
+                overflow-x: auto;
+                grid-column: 1 / -1;
+                margin-top: 40px;
+            }
+
+            .documentation code {
+                font-family: 'DarkerGrotesque', monospace;
+                background-color: #e6e6e6;
+                padding: 2px 4px;
+                border-radius: 3px;
+                color: #333;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="meteors-container"></div>
+
+        <div class="grid-container">
+            <div class="grid-line left-solid"></div>
+            <div class="grid-line right-solid"></div>
+            <div class="grid-line dashed-line-1"></div>
+            <div class="grid-line dashed-line-2"></div>
+            <div class="grid-line dashed-line-3"></div>
+            <div class="grid-line dashed-line-4"></div>
         </div>
-        <div class="fixed-button float-end loading-element pointer bordered clearfix" id="theme-toggle">
-            <i class="ph-fill ph-moon-stars" id="theme-icon"></i>
-        </div>
-    </div>
 
-    <!-- Snackbar Demo Section -->
-    <div class="grid-col-full p-50 pt-0 demo-section">
-        <h2 class="mb-30">Basic Snackbar - All Positions</h2>
-        <div class="button-grid">
-            <button class="pointer" onclick="showSnackbar({ message: 'Top-Left Snackbar', position: 'top-left' })">Top-Left</button>
-            <button class="pointer" onclick="showSnackbar({ message: 'Top-Center Snackbar', position: 'top-center' })">Top-Center</button>
-            <button class="pointer" onclick="showSnackbar({ message: 'Top-Right Snackbar', position: 'top-right' })">Top-Right</button>
-            <button class="pointer" onclick="showSnackbar({ message: 'Center-Left Snackbar', position: 'center-left' })">Center-Left</button>
-            <button class="pointer" onclick="showSnackbar({ message: 'Center-Right Snackbar', position: 'center-right' })">Center-Right</button>
-            <button class="pointer" onclick="showSnackbar({ message: 'Bottom-Left Snackbar', position: 'bottom-left' })">Bottom-Left</button>
-            <button class="pointer" onclick="showSnackbar({ message: 'Bottom-Center Snackbar', position: 'bottom-center' })">Bottom-Center</button>
-            <button class="pointer" onclick="showSnackbar({ message: 'Bottom-Right Snackbar', position: 'bottom-right' })">Bottom-Right</button>
-        </div>
-    </div>
+        <div class="main-content">
+            <div class="sticky invert-background fixed-button">
+                <i class="ph-fill ph-bird"></i>
+            </div>
 
-    <div class="grid-col-full p-50 demo-section">
-        <h2 class="mb-30">Custom Duration and Style</h2>
-        <button class="button-grid" onclick="showSnackbar({ message: 'Custom styled snackbar!', position: 'top-center', duration: 5000, customClass: 'custom-snackbar' })">
-            Show Custom Snackbar
-        </button>
-    </div>
+            <div class="bordered-animation grid-col-full p-50">
+                <span></span><span></span><span></span><span></span>
+                <h1>Snackbar.js</h1>
+                <p>
+                    Explore how the Snackbar.js library can be used to display notifications in different positions and with various styles.
+                    The demo below showcases different configurations.
+                </p>
+            </div>
 
-    <div class="grid-col-full p-50 demo-section">
-        <h2 class="mb-30">Snackbar Inside an Element</h2>
-        <div class="button-grid">
-            <button onclick="showSnackbar({ message: 'Snackbar inside an element!', element: document.getElementById('example-container') })">
-                Show Snackbar Inside Element
-            </button>
-        </div>
-        <div id="example-container" class="bordered p-50 mt-20">
-            <p>This is an example container. The snackbar will appear inside this container.</p>
-        </div>
-    </div>
+            <div class="grid-col-full mb-40">
+                <div class="fixed-button float-end loading-element pointer bordered clearfix" id="toggle-meteors">
+                    <i class="ph-fill ph-meteor"></i>
+                </div>
+                <div class="fixed-button float-end loading-element pointer bordered clearfix" id="theme-toggle">
+                    <i class="ph-fill ph-moon-stars" id="theme-icon"></i>
+                </div>
+            </div>
 
-    <div class="grid-col-full p-50 demo-section">
-        <h2 class="mb-30">Dismissible Snackbars</h2>
-        <div class="button-grid">
-            <button onclick="showSnackbar({ message: 'Dismissible snackbar with default icon!', position: 'top-center', dismissible: true })">
-                Show Dismissible Snackbar (Default Icon)
-            </button>
-            <button onclick="showSnackbar({ message: 'Dismissible snackbar with custom icon!', position: 'bottom-center', dismissible: true, closeIcon: '<i class=\'ph ph-check\'></i>' })">
-                Show Dismissible Snackbar (Custom Icon)
-            </button>
-        </div>
-    </div>
+            <!-- Snackbar Demo Section -->
+            <div class="grid-col-full p-50 pt-0 demo-section">
+                <h2 class="mb-30">Basic Snackbar - All Positions</h2>
+                <div class="button-grid">
+                    <button class="pointer" onclick="showSnackbar({ message: 'Top-Left Snackbar', position: 'top-left' })">Top-Left</button>
+                    <button class="pointer" onclick="showSnackbar({ message: 'Top-Center Snackbar', position: 'top-center' })">Top-Center</button>
+                    <button class="pointer" onclick="showSnackbar({ message: 'Top-Right Snackbar', position: 'top-right' })">Top-Right</button>
+                    <button class="pointer" onclick="showSnackbar({ message: 'Center-Left Snackbar', position: 'center-left' })">Center-Left</button>
+                    <button class="pointer" onclick="showSnackbar({ message: 'Center-Right Snackbar', position: 'center-right' })">Center-Right</button>
+                    <button class="pointer" onclick="showSnackbar({ message: 'Bottom-Left Snackbar', position: 'bottom-left' })">Bottom-Left</button>
+                    <button class="pointer" onclick="showSnackbar({ message: 'Bottom-Center Snackbar', position: 'bottom-center' })">Bottom-Center</button>
+                    <button class="pointer" onclick="showSnackbar({ message: 'Bottom-Right Snackbar', position: 'bottom-right' })">Bottom-Right</button>
+                </div>
+            </div>
 
-    <div class="grid-col-full p-50 demo-section">
-        <h2 class="mb-30">Status-Based Snackbars</h2>
-        <div class="button-grid">
-            <button onclick="showSnackbar({ message: 'Success Snackbar!', position: 'top-center', status: 'success' })">
-                Show Success Snackbar
-            </button>
-            <button onclick="showSnackbar({ message: 'Error Snackbar!', position: 'top-right', status: 'error' })">
-                Show Error Snackbar
-            </button>
-            <button onclick="showSnackbar({ message: 'Warning Snackbar!', position: 'bottom-left', status: 'warning' })">
-                Show Warning Snackbar
-            </button>
-            <button onclick="showSnackbar({ message: 'Info Snackbar!', position: 'bottom-center', status: 'info' })">
-                Show Info Snackbar
-            </button>
-        </div>
-    </div>
+            <div class="grid-col-full p-50 demo-section">
+                <h2 class="mb-30">Snackbar Inside an Element</h2>
+                <div class="button-grid">
+                    <button onclick="showSnackbar({ message: 'Snackbar inside an element!', element: document.getElementById('example-container') })">
+                        Show Snackbar Inside Element
+                    </button>
+                </div>
+                <div id="example-container" class="bordered p-50 mt-20">
+                    <p>This is an example container. The snackbar will appear inside this container.</p>
+                </div>
+            </div>
 
-    <div class="grid-col-full p-50 mt-10">
-        <h2 class="mb-30">Documentation</h2>
-        <p>The <strong>Snackbar.js</strong> library allows you to show notifications (snackbars) on your web page with ease. Below is a brief documentation of the available options:</p>
-        <ul>
-            <li><strong>message</strong>: <em>string</em> - The text message to display in the snackbar. (Required)</li>
-            <li><strong>duration</strong>: <em>number</em> - The duration the snackbar should stay visible, in milliseconds. Default is 3000ms. (Optional)</li>
-            <li><strong>position</strong>: <em>string</em> - The position where the snackbar should appear on the page. Available options:
+            <div class="grid-col-full p-50 demo-section">
+                <h2 class="mb-30">Dismissible Snackbars</h2>
+                <div class="button-grid">
+                    <button onclick="showSnackbar({ message: 'Dismissible snackbar with default icon!', position: 'top-center', dismissible: true })">
+                        Show Dismissible Snackbar (Default Icon)
+                    </button>
+                    <button onclick="showSnackbar({ message: 'Dismissible snackbar with custom icon!', position: 'bottom-center', dismissible: true, closeIcon: '<i class=\'ph ph-check\'></i>' })">
+                        Show Dismissible Snackbar (Custom Icon)
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid-col-full p-50 demo-section">
+                <h2 class="mb-30">Custom Duration and Style</h2>
+                <button class="button-grid" onclick="showSnackbar({ message: 'Custom styled snackbar!', position: 'top-center', duration: 5000, customClass: 'custom-snackbar' })">
+                    Show Custom Snackbar
+                </button>
+            </div>
+
+            <div class="grid-col-full p-50 demo-section">
+                <h2 class="mb-30">Status-Based Snackbars</h2>
+                <div class="button-grid">
+                    <button onclick="showSnackbar({ message: 'Success Snackbar!', position: 'top-center', status: 'success' })">
+                        Show Success Snackbar
+                    </button>
+                    <button onclick="showSnackbar({ message: 'Error Snackbar!', position: 'top-right', status: 'error' })">
+                        Show Error Snackbar
+                    </button>
+                    <button onclick="showSnackbar({ message: 'Warning Snackbar!', position: 'bottom-left', status: 'warning' })">
+                        Show Warning Snackbar
+                    </button>
+                    <button onclick="showSnackbar({ message: 'Info Snackbar!', position: 'bottom-center', status: 'info' })">
+                        Show Info Snackbar
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid-col-full documentation">
+                <h2>Documentation</h2>
+                <p>The <strong>Snackbar.js</strong> library allows you to show notifications (snackbars) on your web page with ease. Below is a brief documentation of the available options:</p>
                 <ul>
-                    <li><code>'top-left'</code></li>
-                    <li><code>'top-center'</code></li>
-                    <li><code>'top-right'</code></li>
-                    <li><code>'center-left'</code></li>
-                    <li><code>'center-right'</code></li>
-                    <li><code>'bottom-left'</code></li>
-                    <li><code>'bottom-center'</code></li>
-                    <li><code>'bottom-right'</code></li>
+                    <li><strong>message</strong>: <em>string</em> - The text message to display in the snackbar. (Required)</li>
+                    <li><strong>duration</strong>: <em>number</em> - The duration the snackbar should stay visible, in milliseconds. Default is 3000ms. (Optional)</li>
+                    <li><strong>position</strong>: <em>string</em> - The position where the snackbar should appear on the page. Available options:
+                        <ul>
+                            <li><code>'top-left'</code></li>
+                            <li><code>'top-center'</code></li>
+                            <li><code>'top-right'</code></li>
+                            <li><code>'center-left'</code></li>
+                            <li><code>'center-right'</code></li>
+                            <li><code>'bottom-left'</code></li>
+                            <li><code>'bottom-center'</code></li>
+                            <li><code>'bottom-right'</code></li>
+                        </ul>
+                        (Optional)
+                    </li>
+                    <li><strong>element</strong>: <em>HTMLElement</em> - An HTML element to which the snackbar should be appended. If provided, the position option is ignored. (Optional)</li>
+                    <li><strong>customClass</strong>: <em>string</em> - A custom CSS class to style the snackbar. (Optional)</li>
+                    <li><strong>dismissible</strong>: <em>boolean</em> - If set to `true`, the snackbar will not auto-dismiss and will show a close button. (Optional)</li>
+                    <li><strong>closeIcon</strong>: <em>string</em> - Custom HTML for the close button icon. Defaults to a Phosphor Icons `x` icon. (Optional)</li>
+                    <li><strong>status</strong>: <em>string</em> - Predefined statuses like `success`, `error`, `warning`, or `info` that apply standard styles. (Optional)</li>
                 </ul>
-                (Optional)
-            </li>
-            <li><strong>element</strong>: <em>HTMLElement</em> - An HTML element to which the snackbar should be appended. If provided, the position option is ignored. (Optional)</li>
-            <li><strong>customClass</strong>: <em>string</em> - A custom CSS class to style the snackbar. (Optional)</li>
-            <li><strong>dismissible</strong>: <em>boolean</em> - If set to `true`, the snackbar will not auto-dismiss and will show a close button. (Optional)</li>
-            <li><strong>closeIcon</strong>: <em>string</em> - Custom HTML for the close button icon. Defaults to a Phosphor Icons `x` icon. (Optional)</li>
-            <li><strong>status</strong>: <em>string</em> - Predefined statuses like `success`, `error`, `warning`, or `info` that apply standard styles. (Optional)</li>
-        </ul>
 
-        <p>To use the library, call the <code>showSnackbar</code> function with the desired options:</p>
-        <pre><code>showSnackbar({
+                <p>To use the library, call the <code>showSnackbar</code> function with the desired options:</p>
+                <pre><code>showSnackbar({
     message: 'Your message here!',
     position: 'top-center',
     duration: 3000,
@@ -190,86 +284,84 @@
     dismissible: true,
     closeIcon: '&lt;i class="your-custom-icon"&gt;&lt;/i&gt;'
 });</code></pre>
-    </div>
-</div>
+            </div>
+        </div>
 
-<script src="js/snackbar.js"></script> <!-- Link to the compiled snackbar.js -->
+        <script src="js/snackbar.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                document.querySelector('.bordered-animation').setAttribute('data-visible', 'true');
 
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        document.querySelector('.bordered-animation').setAttribute('data-visible', 'true');
+                const mainContent = document.querySelector('.main-content');
+                const gridLines = document.querySelectorAll('.grid-line');
 
-        const mainContent = document.querySelector('.main-content');
-        const gridLines = document.querySelectorAll('.grid-line');
+                const contentHeight = mainContent.scrollHeight;
+                gridLines.forEach(line => {
+                    line.style.height = contentHeight + 'px';
+                });
 
-        const contentHeight = mainContent.scrollHeight;
-        gridLines.forEach(line => {
-            line.style.height = contentHeight + 'px';
-        });
+                const container = document.getElementById('meteors-container');
+                let meteorsActive = false;
+                let meteorsInterval;
 
-        const container = document.getElementById('meteors-container');
-        let meteorsActive = false;
-        let meteorsInterval;
+                function createMeteor() {
+                    const meteor = document.createElement('span');
+                    meteor.className = 'meteor';
 
-        function createMeteor() {
-            const meteor = document.createElement('span');
-            meteor.className = 'meteor';
+                    const style = {
+                        top: '-5px',
+                        left: Math.floor(Math.random() * window.innerWidth) + 'px',
+                        animationDelay: (Math.random() * 1 + 0.2) + 's',
+                        animationDuration: (Math.floor(Math.random() * 8 + 2)) + 's',
+                    };
 
-            const style = {
-                top: '-5px',
-                left: Math.floor(Math.random() * window.innerWidth) + 'px',
-                animationDelay: (Math.random() * 1 + 0.2) + 's',
-                animationDuration: (Math.floor(Math.random() * 8 + 2)) + 's',
-            };
+                    Object.assign(meteor.style, style);
+                    meteor.style.animation = `meteor ${style.animationDuration} linear`;
 
-            Object.assign(meteor.style, style);
-            meteor.style.animation = `meteor ${style.animationDuration} linear`;
+                    container.appendChild(meteor);
 
-            container.appendChild(meteor);
+                    setTimeout(() => {
+                        meteor.remove();
+                    }, parseFloat(style.animationDuration) * 1000);
+                }
 
-            setTimeout(() => {
-                meteor.remove();
-            }, parseFloat(style.animationDuration) * 1000);
-        }
+                function startMeteors() {
+                    meteorsActive = true;
+                    meteorsInterval = setInterval(createMeteor, 300);
+                }
 
-        function startMeteors() {
-            meteorsActive = true;
-            meteorsInterval = setInterval(createMeteor, 300);
-        }
+                function stopMeteors() {
+                    meteorsActive = false;
+                    clearInterval(meteorsInterval);
+                    container.innerHTML = '';
+                }
 
-        function stopMeteors() {
-            meteorsActive = false;
-            clearInterval(meteorsInterval);
-            container.innerHTML = '';
-        }
+                document.getElementById('toggle-meteors').addEventListener('click', function () {
+                    if (meteorsActive) {
+                        stopMeteors();
+                    } else {
+                        startMeteors();
+                    }
+                });
 
-        document.getElementById('toggle-meteors').addEventListener('click', function () {
-            if (meteorsActive) {
-                stopMeteors();
-            } else {
-                startMeteors();
-            }
-        });
+                const themeToggleButton = document.getElementById('theme-toggle');
+                const themeIcon = document.getElementById('theme-icon');
+                const body = document.body;
 
-        const themeToggleButton = document.getElementById('theme-toggle');
-        const themeIcon = document.getElementById('theme-icon');
-        const body = document.body;
+                themeToggleButton.addEventListener('click', function () {
+                    body.classList.toggle('dark-mode');
 
-        themeToggleButton.addEventListener('click', function () {
-            body.classList.toggle('dark-mode');
-
-            // Toggle the icon
-            if (body.classList.contains('dark-mode')) {
-                themeIcon.classList.remove('ph-moon-stars');
-                themeIcon.classList.add('ph-sun-dim');
-            } else {
-                themeIcon.classList.remove('ph-sun-dim');
-                themeIcon.classList.add('ph-moon-stars');
-            }
-        });
-    });
-</script>
-<script src="js/phosphor-icons_web.js"></script>
-</body>
-
+                    // Toggle the icon
+                    if (body.classList.contains('dark-mode')) {
+                        themeIcon.classList.remove('ph-moon-stars');
+                        themeIcon.classList.add('ph-sun-dim');
+                    } else {
+                        themeIcon.classList.remove('ph-sun-dim');
+                        themeIcon.classList.add('ph-moon-stars');
+                    }
+                });
+            });
+        </script>
+        <script src="js/phosphor-icons_web.js"></script>
+    </body>
 </html>
