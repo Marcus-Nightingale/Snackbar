@@ -137,21 +137,21 @@
             }
 
             .button-backdrop {
+                background-color: #000;
                 position: absolute;
                 top: 0;
                 left: 0;
                 width: 100%;
                 height: 100%;
-                background-color: transparent;
                 z-index: 1;
                 transition: background-color 0.3s ease;
             }
 
             .button-face {
-                background-color: #fff;
+                background-color: white;
                 color: #000;
                 border: 1px solid #333;
-                padding: 15px 30px;
+                padding: 25px 30px;
                 font-size: 16px;
                 font-family: 'Arial', sans-serif;
                 text-transform: uppercase;
@@ -173,6 +173,7 @@
 
             .button-container:hover .button-face {
                 transform: translate(8px, -8px);
+                background-color: white;
                 z-index: 3;
             }
 
@@ -216,65 +217,88 @@
                 </div>
             </div>
 
-            <!-- Snackbar Demo Section -->
-            <div class="grid-col-full p-50 pt-0">
+            <div class="grid-col-full p-10 pl-50 pr-50">
                 <h2 class="mb-30">Basic Snackbar - All Positions</h2>
-                <div class="button-grid">
-                    <div class="button-container" onclick="showSnackbar({ message: 'Top-Left Snackbar', position: 'top-left' })">
-                        <div class="button-backdrop"></div>
-                        <button class="button-face gravity-button pointer">
-                            Top-Left
-                        </button>
-                    </div>
+            </div>
 
-                    <div class="button-container" onclick="showSnackbar({ message: 'Top-Center Snackbar', position: 'top-center' })">
-                        <div class="button-backdrop"></div>
-                        <button class="button-face gravity-button pointer">
-                            Top-Center
-                        </button>
-                    </div>
+            <div class="grid-col-1">
+                <div class="button-container" onclick="showSnackbar({ message: 'Top-Left Snackbar', position: 'top-left' })">
+                    <div class="button-backdrop"></div>
+                    <button class="button-face gravity-button pointer">
+                        Top-Left
+                    </button>
+                </div>
+            </div>
 
-                    <div class="button-container" onclick="showSnackbar({ message: 'Top-Right Snackbar', position: 'top-right' })">
-                        <div class="button-backdrop"></div>
-                        <button class="button-face gravity-button pointer">
-                            Top-Right
-                        </button>
-                    </div>
+            <div class="grid-col-1">
+                <div class="button-container" onclick="showSnackbar({ message: 'Top-Center Snackbar', position: 'top-center' })">
+                    <div class="button-backdrop"></div>
+                    <button class="button-face gravity-button pointer">
+                        Top-Center
+                    </button>
+                </div>
+            </div>
 
-                    <div class="button-container" onclick="showSnackbar({ message: 'Center-Left Snackbar', position: 'center-left' })">
-                        <div class="button-backdrop"></div>
-                        <button class="button-face gravity-button pointer">
-                            Center-Left
-                        </button>
-                    </div>
+            <div class="grid-col-1">
+                <div class="button-container" onclick="showSnackbar({ message: 'Top-Right Snackbar', position: 'top-right' })">
+                    <div class="button-backdrop"></div>
+                    <button class="button-face gravity-button pointer">
+                        Top-Right
+                    </button>
+                </div>
+            </div>
 
-                    <div class="button-container" onclick="showSnackbar({ message: 'Center-Right Snackbar', position: 'center-right' })">
-                        <div class="button-backdrop"></div>
-                        <button class="button-face gravity-button pointer">
-                            Center-Right
-                        </button>
-                    </div>
+            <div class="grid-col-1">
+                <div class="button-container" onclick="showSnackbar({ message: 'Center-Left Snackbar', position: 'center-left' })">
+                    <div class="button-backdrop"></div>
+                    <button class="button-face gravity-button pointer">
+                        Center-Left
+                    </button>
+                </div>
+            </div>
 
-                    <div class="button-container" onclick="showSnackbar({ message: 'Bottom-Left Snackbar', position: 'bottom-left' })">
-                        <div class="button-backdrop"></div>
-                        <button class="button-face gravity-button pointer">
-                            Bottom-Left
-                        </button>
-                    </div>
+            <div class="grid-col-1">
+                <div class="button-container" onclick="showSnackbar({ message: 'Center-Right Snackbar', position: 'center-right' })">
+                    <div class="button-backdrop"></div>
+                    <button class="button-face gravity-button pointer">
+                        Center-Right
+                    </button>
+                </div>
+            </div>
 
-                    <div class="button-container" onclick="showSnackbar({ message: 'Bottom-Center Snackbar', position: 'bottom-center' })">
-                        <div class="button-backdrop"></div>
-                        <button class="button-face gravity-button pointer">
-                            Bottom-Center
-                        </button>
-                    </div>
+            <div class="grid-col-1">
+                <div class="button-container" onclick="showSnackbar({ message: 'Bottom-Left Snackbar', position: 'bottom-left' })">
+                    <div class="button-backdrop"></div>
+                    <button class="button-face gravity-button pointer">
+                        Bottom-Left
+                    </button>
+                </div>
+            </div>
 
-                    <div class="button-container" onclick="showSnackbar({ message: 'Bottom-Right Snackbar', position: 'bottom-right' })">
-                        <div class="button-backdrop"></div>
-                        <button class="button-face gravity-button pointer">
-                            Bottom-Right
-                        </button>
-                    </div>
+            <div class="grid-col-1">
+                <div class="button-container" onclick="showSnackbar({ message: 'Bottom-Center Snackbar', position: 'bottom-center' })">
+                    <div class="button-backdrop"></div>
+                    <button class="button-face gravity-button pointer">
+                        Bottom-Center
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid-col-1">
+                <div class="button-container" onclick="showSnackbar({ message: 'Bottom-Right Snackbar', position: 'bottom-right' })">
+                    <div class="button-backdrop"></div>
+                    <button class="button-face gravity-button pointer">
+                        Bottom-Right
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid-col-1">
+                <div class="button-container" onclick="">
+                    <div class="button-backdrop"></div>
+                    <button class="button-face gravity-button pointer">
+                        Show all
+                    </button>
                 </div>
             </div>
 
@@ -481,23 +505,37 @@
                 });
             });
 
-            document.querySelectorAll('.gravity-button').forEach(btn => {
-
-                btn.addEventListener('mousemove', (e) => {
-                    const rect = btn.getBoundingClientRect();
+            document.querySelectorAll(".gravity-button").forEach((btn) => {
+                const updateTransform = (x, y, rect) => {
                     const btnCenterX = rect.left + rect.width / 2;
                     const btnCenterY = rect.top + rect.height / 2;
 
-                    const offsetX = (e.clientX - btnCenterX) / rect.width * 20;
-                    const offsetY = (e.clientY - btnCenterY) / rect.height * 20;
+                    const offsetX = ((x - btnCenterX) / rect.width) * 20;
+                    const offsetY = ((y - btnCenterY) / rect.height) * 20;
 
-                    btn.style.transition = 'transform 0.15s ease-out';
+                    btn.style.transition = "transform 0.15s ease-out";
                     btn.style.transform = `translate(${8 + offsetX}px, ${-8 + offsetY}px)`;
+                };
+
+                btn.addEventListener("mousemove", (e) => {
+                    const rect = btn.getBoundingClientRect();
+                    updateTransform(e.clientX, e.clientY, rect);
                 });
 
-                btn.addEventListener('mouseleave', () => {
-                    btn.style.transition = 'transform 0.3s ease-in';
-                    btn.style.transform = 'translate(0, 0)';
+                btn.addEventListener("mouseleave", () => {
+                    btn.style.transition = "transform 0.3s ease-in";
+                    btn.style.transform = "translate(0, 0)";
+                });
+
+                btn.addEventListener("touchmove", (e) => {
+                    const rect = btn.getBoundingClientRect();
+                    const touch = e.touches[0];
+                    updateTransform(touch.clientX, touch.clientY, rect);
+                });
+
+                btn.addEventListener("touchend", () => {
+                    btn.style.transition = "transform 0.3s ease-in";
+                    btn.style.transform = "translate(0, 0)";
                 });
             });
         </script>
