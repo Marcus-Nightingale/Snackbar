@@ -301,7 +301,7 @@
             </div>
 
             <div class="grid-col-1">
-                <div class="button-container" onclick="">
+                <div class="button-container" id="show-all-snackbars">
                     <div class="button-backdrop"></div>
                     <button class="button-face gravity-button pointer">
                         Show all
@@ -543,6 +543,21 @@
                 btn.addEventListener("touchend", () => {
                     btn.style.transition = "transform 0.3s ease-in";
                     btn.style.transform = "translate(0, 0)";
+                });
+            });
+
+            document.getElementById('show-all-snackbars').addEventListener('click', function() {
+                const positions = [
+                    'top-left', 'top-center', 'top-right',
+                    'center-left', 'center-right',
+                    'bottom-left', 'bottom-center', 'bottom-right'
+                ];
+
+                positions.forEach(position => {
+                    showSnackbar({
+                        message: `Snackbar at ${position.replace('-', ' ')}`,
+                        position: position
+                    });
                 });
             });
         </script>
