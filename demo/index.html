@@ -34,7 +34,15 @@
             }
 
             .custom-snackbar {
-                background: darkorange;
+                background: white;
+                border: 2px solid #333;
+                border-radius: 0;
+                box-shadow: none;
+                color: #333;
+            }
+
+            .custom-snackbar > .snackbar-close-button > i {
+                color: #333 !important;
             }
 
             .documentation {
@@ -341,7 +349,7 @@
                 <div class="button-container">
                     <div class="button-backdrop"></div>
                     <button class="button-face gravity-button pointer"
-                            onclick="showSnackbar({ message: 'Custom styled snackbar!', position: 'top-center', duration: 5000, customClass: 'custom-snackbar' })">
+                            onclick="showSnackbar({ message: 'Custom styled snackbar!', customClass: 'custom-snackbar', position: 'bottom-right', dismissible: true })">
                         Show Custom Snackbar
                     </button>
                 </div>
