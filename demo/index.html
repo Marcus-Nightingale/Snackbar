@@ -17,34 +17,15 @@
                 margin-bottom: 30px;
             }
 
-            .demo-container {
-                margin-bottom: 40px;
-            }
-
             .button-grid {
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);
                 gap: 20px;
             }
 
-            .button-grid button {
-                font-size: 1.2rem;
-                transition: background-color 0.3s;
-                border: 1px solid #333;
-                background: white;
-                color: #333;
-                border-radius: 0;
-                text-align: left;
-                padding: 25px;
-            }
-
-            .button-grid button:hover {
-                background-color: #555;
-            }
-
             /* Dark mode adjustments */
             body.dark-mode .button-grid button {
-                background-color: #444;
+                background-color: transparent;
                 color: #ddd;
             }
 
@@ -148,6 +129,56 @@
                 border-radius: 3px;
                 color: #333;
             }
+
+            .button-container {
+                position: relative;
+                display: inline-block;
+                width: 100%;
+            }
+
+            .button-backdrop {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: transparent;
+                z-index: 1;
+                transition: background-color 0.3s ease;
+            }
+
+            .button-face {
+                background-color: #fff;
+                color: #000;
+                border: 1px solid #333;
+                padding: 15px 30px;
+                font-size: 16px;
+                font-family: 'Arial', sans-serif;
+                text-transform: uppercase;
+                cursor: pointer;
+                position: relative;
+                z-index: 2;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                transition: transform 0.3s ease, background-color 0.3s ease;
+                transform: translate(0, 0);
+                width: 100%;
+            }
+
+            .button-face span {
+                font-size: 16px;
+                margin-left: 10px;
+            }
+
+            .button-container:hover .button-face {
+                transform: translate(8px, -8px);
+                z-index: 3;
+            }
+
+            .button-container:hover .button-backdrop {
+                background-color: #000;
+            }
         </style>
     </head>
     <body>
@@ -186,24 +217,72 @@
             </div>
 
             <!-- Snackbar Demo Section -->
-            <div class="grid-col-full p-50 pt-0 demo-section">
+            <div class="grid-col-full p-50 pt-0">
                 <h2 class="mb-30">Basic Snackbar - All Positions</h2>
                 <div class="button-grid">
-                    <button class="pointer" onclick="showSnackbar({ message: 'Top-Left Snackbar', position: 'top-left' })">Top-Left</button>
-                    <button class="pointer" onclick="showSnackbar({ message: 'Top-Center Snackbar', position: 'top-center' })">Top-Center</button>
-                    <button class="pointer" onclick="showSnackbar({ message: 'Top-Right Snackbar', position: 'top-right' })">Top-Right</button>
-                    <button class="pointer" onclick="showSnackbar({ message: 'Center-Left Snackbar', position: 'center-left' })">Center-Left</button>
-                    <button class="pointer" onclick="showSnackbar({ message: 'Center-Right Snackbar', position: 'center-right' })">Center-Right</button>
-                    <button class="pointer" onclick="showSnackbar({ message: 'Bottom-Left Snackbar', position: 'bottom-left' })">Bottom-Left</button>
-                    <button class="pointer" onclick="showSnackbar({ message: 'Bottom-Center Snackbar', position: 'bottom-center' })">Bottom-Center</button>
-                    <button class="pointer" onclick="showSnackbar({ message: 'Bottom-Right Snackbar', position: 'bottom-right' })">Bottom-Right</button>
+                    <div class="button-container" onclick="showSnackbar({ message: 'Top-Left Snackbar', position: 'top-left' })">
+                        <div class="button-backdrop"></div>
+                        <button class="button-face gravity-button pointer">
+                            Top-Left
+                        </button>
+                    </div>
+
+                    <div class="button-container" onclick="showSnackbar({ message: 'Top-Center Snackbar', position: 'top-center' })">
+                        <div class="button-backdrop"></div>
+                        <button class="button-face gravity-button pointer">
+                            Top-Center
+                        </button>
+                    </div>
+
+                    <div class="button-container" onclick="showSnackbar({ message: 'Top-Right Snackbar', position: 'top-right' })">
+                        <div class="button-backdrop"></div>
+                        <button class="button-face gravity-button pointer">
+                            Top-Right
+                        </button>
+                    </div>
+
+                    <div class="button-container" onclick="showSnackbar({ message: 'Center-Left Snackbar', position: 'center-left' })">
+                        <div class="button-backdrop"></div>
+                        <button class="button-face gravity-button pointer">
+                            Center-Left
+                        </button>
+                    </div>
+
+                    <div class="button-container" onclick="showSnackbar({ message: 'Center-Right Snackbar', position: 'center-right' })">
+                        <div class="button-backdrop"></div>
+                        <button class="button-face gravity-button pointer">
+                            Center-Right
+                        </button>
+                    </div>
+
+                    <div class="button-container" onclick="showSnackbar({ message: 'Bottom-Left Snackbar', position: 'bottom-left' })">
+                        <div class="button-backdrop"></div>
+                        <button class="button-face gravity-button pointer">
+                            Bottom-Left
+                        </button>
+                    </div>
+
+                    <div class="button-container" onclick="showSnackbar({ message: 'Bottom-Center Snackbar', position: 'bottom-center' })">
+                        <div class="button-backdrop"></div>
+                        <button class="button-face gravity-button pointer">
+                            Bottom-Center
+                        </button>
+                    </div>
+
+                    <div class="button-container" onclick="showSnackbar({ message: 'Bottom-Right Snackbar', position: 'bottom-right' })">
+                        <div class="button-backdrop"></div>
+                        <button class="button-face gravity-button pointer">
+                            Bottom-Right
+                        </button>
+                    </div>
                 </div>
             </div>
 
-            <div class="grid-col-full p-50 demo-section">
+            <div class="grid-col-full p-50">
                 <h2 class="mb-30">Snackbar Inside an Element</h2>
-                <div class="button-grid">
-                    <button onclick="showSnackbar({ message: 'Snackbar inside an element!', element: document.getElementById('example-container') })">
+                <div class="button-container" onclick="showSnackbar({ message: 'Top-Left Snackbar', position: 'top-left' })">
+                    <div class="button-backdrop"></div>
+                    <button class="button-face gravity-button pointer" onclick="showSnackbar({ message: 'Snackbar inside an element!', element: document.getElementById('example-container') })">
                         Show Snackbar Inside Element
                     </button>
                 </div>
@@ -212,44 +291,84 @@
                 </div>
             </div>
 
-            <div class="grid-col-full p-50 demo-section">
+            <div class="grid-col-full p-50">
                 <h2 class="mb-30">Dismissible Snackbars</h2>
                 <div class="button-grid">
-                    <button onclick="showSnackbar({ message: 'Dismissible snackbar with default icon!', position: 'top-center', dismissible: true })">
-                        Show Dismissible Snackbar (Default Icon)
-                    </button>
-                    <button onclick="showSnackbar({ message: 'Dismissible snackbar with custom icon!', position: 'bottom-center', dismissible: true, closeIcon: '<i class=\'ph ph-check\'></i>' })">
-                        Show Dismissible Snackbar (Custom Icon)
+                    <div class="button-container">
+                        <div class="button-backdrop"></div>
+                        <button class="button-face gravity-button pointer"
+                                onclick="showSnackbar({ message: 'Dismissible snackbar with default icon!', position: 'top-center', dismissible: true })">
+                            Show Dismissible Snackbar (Default Icon)
+                        </button>
+                    </div>
+
+                    <div class="button-container">
+                        <div class="button-backdrop"></div>
+                        <button class="button-face gravity-button pointer"
+                                onclick="showSnackbar({ message: 'Dismissible snackbar with custom icon!', position: 'bottom-center', dismissible: true, closeIcon: '<i class=\'ph ph-check\'></i>' })">
+                            Show Dismissible Snackbar (Custom Icon)
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-col-full p-50">
+                <h2 class="mb-30">Custom Duration and Style</h2>
+
+                <div class="button-container">
+                    <div class="button-backdrop"></div>
+                    <button class="button-face gravity-button pointer"
+                            onclick="showSnackbar({ message: 'Custom styled snackbar!', position: 'top-center', duration: 5000, customClass: 'custom-snackbar' })">
+                        Show Custom Snackbar
                     </button>
                 </div>
             </div>
 
-            <div class="grid-col-full p-50 demo-section">
-                <h2 class="mb-30">Custom Duration and Style</h2>
-                <button class="button-grid" onclick="showSnackbar({ message: 'Custom styled snackbar!', position: 'top-center', duration: 5000, customClass: 'custom-snackbar' })">
-                    Show Custom Snackbar
-                </button>
+            <div class="grid-col-full p-10 pl-50 pr-50">
+                <h2 class="mb-30">Status-Based Snackbars</h2>
             </div>
 
-            <div class="grid-col-full p-50 demo-section">
-                <h2 class="mb-30">Status-Based Snackbars</h2>
-                <div class="button-grid">
-                    <button onclick="showSnackbar({ message: 'Success Snackbar!', position: 'top-center', status: 'success' })">
+            <div class="grid-col-1">
+                <div class="button-container">
+                    <div class="button-backdrop"></div>
+                    <button class="button-face gravity-button pointer text-center"
+                            onclick="showSnackbar({ message: 'Success Snackbar!', position: 'top-right', status: 'success' })">
                         Show Success Snackbar
                     </button>
-                    <button onclick="showSnackbar({ message: 'Error Snackbar!', position: 'top-right', status: 'error' })">
+                </div>
+            </div>
+
+            <div class="grid-col-1">
+                <div class="button-container">
+                    <div class="button-backdrop"></div>
+                    <button class="button-face gravity-button pointer text-center"
+                            onclick="showSnackbar({ message: 'Error Snackbar!', position: 'top-right', status: 'error' })">
                         Show Error Snackbar
-                    </button>
-                    <button onclick="showSnackbar({ message: 'Warning Snackbar!', position: 'bottom-left', status: 'warning' })">
-                        Show Warning Snackbar
-                    </button>
-                    <button onclick="showSnackbar({ message: 'Info Snackbar!', position: 'bottom-center', status: 'info' })">
-                        Show Info Snackbar
                     </button>
                 </div>
             </div>
 
-            <div class="grid-col-full documentation">
+            <div class="grid-col-1">
+                <div class="button-container">
+                    <div class="button-backdrop"></div>
+                    <button class="button-face gravity-button pointer text-center"
+                            onclick="showSnackbar({ message: 'Warning Snackbar!', position: 'top-right', status: 'warning' })">
+                        Show Warning Snackbar
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid-col-1">
+                <div class="button-container">
+                    <div class="button-backdrop"></div>
+                    <button class="button-face gravity-button pointer text-center"
+                            onclick="showSnackbar({ message: 'Info Snackbar!', position: 'top-right', status: 'info' })">
+                        Show Informative Snackbar
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid-col-full mt-30 documentation">
                 <h2>Documentation</h2>
                 <p>The <strong>Snackbar.js</strong> library allows you to show notifications (snackbars) on your web page with ease. Below is a brief documentation of the available options:</p>
                 <ul>
@@ -359,6 +478,26 @@
                         themeIcon.classList.remove('ph-sun-dim');
                         themeIcon.classList.add('ph-moon-stars');
                     }
+                });
+            });
+
+            document.querySelectorAll('.gravity-button').forEach(btn => {
+
+                btn.addEventListener('mousemove', (e) => {
+                    const rect = btn.getBoundingClientRect();
+                    const btnCenterX = rect.left + rect.width / 2;
+                    const btnCenterY = rect.top + rect.height / 2;
+
+                    const offsetX = (e.clientX - btnCenterX) / rect.width * 20;
+                    const offsetY = (e.clientY - btnCenterY) / rect.height * 20;
+
+                    btn.style.transition = 'transform 0.15s ease-out';
+                    btn.style.transform = `translate(${8 + offsetX}px, ${-8 + offsetY}px)`;
+                });
+
+                btn.addEventListener('mouseleave', () => {
+                    btn.style.transition = 'transform 0.3s ease-in';
+                    btn.style.transform = 'translate(0, 0)';
                 });
             });
         </script>
